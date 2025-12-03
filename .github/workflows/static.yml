@@ -1,16 +1,17 @@
-name: GitHub Pages - Deploy Static Site
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main # Se ejecuta cada vez que haces push a main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      pages: write # Necesario para deploy
-      id-token: write # Necesario para deploy
+      pages: write # Necesario para publicar en GitHub Pages
+      id-token: write # Necesario para autenticación de deploy
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -18,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "20" # Vite 7+ requiere Node 20 o 22
 
       - name: Install dependencies
         run: npm install
@@ -26,13 +27,5 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: dist
-
-      - name: Deploy Pages
+      - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
