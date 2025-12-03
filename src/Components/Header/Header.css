@@ -1,0 +1,21 @@
+.banner {
+  min-height: 120px;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  /* Use RGBA to specify opacity */
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+.site__section {
+  width: 100%;
+  max-width: 880px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+}
+
+.banner__logo {
+  width: 173px;
+  height: 33px;
+  object-fit: contain;
+}
